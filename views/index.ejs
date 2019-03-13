@@ -1,0 +1,24 @@
+<style>
+    table, tr, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+<h2>Adventure Time</h2>
+<p>Adventure Statics</p>
+<table>
+    <tr>
+        <th>Atk</th>
+        <th>Def</th>
+        <th>HP</th>
+        <th>Magic</th>
+    </tr>
+<% for (var x in stats) { %>
+    <tr>
+        <td><%= stats[x].atk %></td>
+        <td><%= stats[x].def %></td>
+        <td><%= stats[x].hp %></td>
+        <td><%= stats[x].mgc %></td>
+    </tr>
+<% } %>
+</table>
