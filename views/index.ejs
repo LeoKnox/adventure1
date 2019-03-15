@@ -1,6 +1,17 @@
 <style>
     table, tr, th, td {
         border: 1px solid black;
+        color: black;
+    }
+    th, td {
+        background-color: lightgray;
+    }
+    table {
+        background-color: gray;
+    }
+    body {
+        color: lightgray;
+        background-color: black;
     }
 </style>
 
@@ -8,6 +19,7 @@
 <p>Adventure Statics</p>
 <table>
     <tr>
+        <th>ID</th>
         <th>Atk</th>
         <th>Def</th>
         <th>HP</th>
@@ -15,6 +27,7 @@
     </tr>
 <% for (var x in stats) { %>
     <tr>
+        <td><%= stats[x].id %></td>
         <td><%= stats[x].atk %></td>
         <td><%= stats[x].def %></td>
         <td><%= stats[x].hp %></td>
@@ -22,3 +35,33 @@
     </tr>
 <% } %>
 </table>
+<table>
+    <tr>
+        <th>Atk</th>
+        <th>Def</th>
+        <th>HP</th>
+        <th>Magic</th>
+    </tr>
+    <form method='post' action='/users'>
+        <tr>
+            <td><input type='text' name='name'></td>
+            <td><input type='text' name='age'></td>
+            <td><input type='text' name='hp'></td>
+            <td><input type='text' name='mgc'></td>
+        </tr>
+        <tr>
+            <th>Factor1</th>
+            <th>Factor2</th>
+            <th>Factor3</th>
+            <th>Factor4</th>
+        </tr>
+        <tr>
+            <td><input type='number' name='fac1'></td>
+            <td><input type='number' name='fac2'></td>
+            <td><input type='number' name='fac3'></td>
+            <td><input type='number' name='fac4'></td>
+        </tr>
+        <button>Submit</button>
+    </form>
+</table>
+<button><a href="/attack">Attack</a></button>
