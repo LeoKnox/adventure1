@@ -34,8 +34,17 @@ app.get('/', function(req, res) {
 app.post('/users', function(req, res) {
     console.log("post data", req.body)
     var monster = new Monster({name: req.body.name, hp: req.body.hp, def: req.body.def, atk: req.body.atk, mgc: req.body.mgc})
+    var chart = [];
     var x = {hp: req.body.hp-3, atk: req.body.atk};
-    console.log(x.hp);
+    while (req.body.hp >= 0) {
+        z = req.body.hp;
+        req.body.hp -= req.body.atk*Math.floor(Math.random()*req.body.fac1+1);
+        if (z == req.body.hp) {
+            req.body.hp -= 10;
+        }
+        chart.push(req.body.atk*Math.floor(Math.random()*req.body.fac1+1))
+    }
+    console.log(chart);
     monster.save(function(err) {
         if (err) {
             console.log('something went wrong')
