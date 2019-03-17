@@ -13,6 +13,11 @@
         color: lightgray;
         background-color: black;
     }
+    #visual {
+        height: 150px;
+        width: 400px;
+        background-color: darkgray;
+    }
 </style>
 
 <h2>Adventure Time</h2>
@@ -63,4 +68,14 @@
         </tr><br>
         <button>Attack</button>
     </form>
-</table>
+</table><br>
+<div id="visual">
+    <svg>
+        <polyline id="pl" points="36,20 40,45 60,35 80,10" style="fill:none;stroke:blue;stroke-width:3" />
+        <polyline id="atk" points="
+        <% for (var p in points) { %>
+            <%= p*10 %>,<%= points[p] %>
+        <% } %>
+        " style="fill:none;stroke:red;stroke-width:3" />
+    </svg>
+</div>

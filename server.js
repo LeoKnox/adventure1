@@ -2,8 +2,10 @@ var express = require('express')
 var app = express()
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
+var session = require('express-session')
 
 app.use (bodyParser.urlencoded({ extended: true }))
+app.use (session({secret: "be very quiet"}))
 var path = require('path')
 mongoose.connect('mongodb://localhost/basic_mongoose')
 
@@ -28,7 +30,7 @@ app.get('/', function(req, res) {
         {id: 2, atk: 14, def: 17, hp: 15, mgc: 38},
         {id: 3, atk: 20, def: 12, hp: 28, mgc: 24},
     ]
-    res.render('index', {stats: adv_data});
+    res.render('index', {stats: adv_data, points: req.session.chart})
 })
 
 app.post('/users', function(req, res) {
@@ -45,6 +47,7 @@ app.post('/users', function(req, res) {
         chart.push(req.body.atk*Math.floor(Math.random()*req.body.fac1+1))
     }
     console.log(chart);
+    req.session.chart = chart;
     monster.save(function(err) {
         if (err) {
             console.log('something went wrong')
