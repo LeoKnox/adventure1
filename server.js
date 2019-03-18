@@ -30,32 +30,23 @@ app.get('/', function(req, res) {
         {id: 2, atk: 14, def: 17, hp: 15, mgc: 38},
         {id: 3, atk: 20, def: 12, hp: 28, mgc: 24},
     ]
-    res.render('index', {stats: adv_data, points: req.session.chart})
+    res.render('index', {stats: adv_data, points: req.session.chart, hp: req.session.hp})
 })
 
 app.post('/users', function(req, res) {
-    console.log("post data", req.body)
     var monster = new Monster({name: req.body.name, hp: req.body.hp, def: req.body.def, atk: req.body.atk, mgc: req.body.mgc})
     var chart = [];
+    hp = [];
     var x = {hp: req.body.hp-3, atk: req.body.atk};
-    while (req.body.hp >= 0) {
-        z = req.body.hp;
-        req.body.hp -= req.body.atk*Math.floor(Math.random()*req.body.fac1+1);
-        if (z == req.body.hp) {
-            req.body.hp -= 10;
-        }
-        chart.push(req.body.atk*Math.floor(Math.random()*req.body.fac1+1))
+    while (req.body.hp > 0) {
+        var dmg = req.body.atk*Math.floor(Math.random()*req.body.fac1+1);
+        req.body.hp -= dmg;
+        hp.push(req.body.hp)
+        chart.push(dmg)
     }
-    console.log(chart);
-    req.session.chart = chart;
-    monster.save(function(err) {
-        if (err) {
-            console.log('something went wrong')
-        } else {
-            console.log('successfully added a user')
-        }
-        res.redirect('/')
-    })
+    req.session.chart = chart
+    req.session.hp = hp
+    res.redirect('/')
 })
 
 app.get('/attack', function(req, res) {

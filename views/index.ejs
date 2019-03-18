@@ -69,13 +69,18 @@
         <button>Attack</button>
     </form>
 </table><br>
+<p>Visual Data</p>
 <div id="visual">
     <svg>
-        <polyline id="pl" points="36,20 40,45 60,35 80,10" style="fill:none;stroke:blue;stroke-width:3" />
         <polyline id="atk" points="
         <% for (var p in points) { %>
-            <%= p*10 %>,<%= points[p] %>
+            <%= p*30+15 %>,<%= points[p]/1.6 %>
         <% } %>
         " style="fill:none;stroke:red;stroke-width:3" />
+        <polyline id="hp" points="
+        <% for (var h in hp) { %>
+            <%= h*30+15 %>,<%= 170 - hp[h]/5 %>
+        <% } %>
+        " style="fill:none;stroke:blue;stroke-width:3" />
     </svg>
 </div>
