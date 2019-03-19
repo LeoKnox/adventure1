@@ -64,7 +64,7 @@
             <td><input type='number' name='fac1'></td>
             <td><input type='number' name='fac2'></td>
             <td><input type='number' name='fac3'></td>
-            <td><input type='number' name='fac4'></td>
+            <td><input type='text' name='fac4'></td>
         </tr><br>
         <button>Attack</button>
     </form>
@@ -74,12 +74,12 @@
     <svg>
         <polyline id="atk" points="
         <% for (var p in points) { %>
-            <%= p*30+15 %>,<%= points[p]/1.6 %>
+            <%= p*30+15 %>,<%= 100-points[p]*.5 %>
         <% } %>
         " style="fill:none;stroke:red;stroke-width:3" />
         <polyline id="hp" points="
         <% for (var h in hp) { %>
-            <%= h*30+15 %>,<%= 170 - hp[h]/5 %>
+            <%= h*30+15 %>,<%= 100 - hp[h]/4 %>
         <% } %>
         " style="fill:none;stroke:blue;stroke-width:3" />
     </svg>
