@@ -1,11 +1,19 @@
 var express = require('express')
 var app = express()
+var server = app.listen(1337)
+var io = require('socket.io')(server)
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var session = require('express-session')
 
 app.use (bodyParser.urlencoded({ extended: true }))
 app.use (session({secret: "be very quiet"}))
+io.on('connection', function(socket) {
+    socket.emit('greeting', {msg: 'Greetings, from server Node, brought to you by sockects'})
+    socket.on('thank you', function(data) {
+        console.log(data.msg)
+    })
+})
 var path = require('path')
 mongoose.connect('mongodb://localhost/basic_mongoose')
 
@@ -31,6 +39,10 @@ app.get('/', function(req, res) {
         {id: 3, atk: 20, def: 12, hp: 28, mgc: 24},
     ]
     res.render('index', {stats: adv_data, points: req.session.chart, hp: req.session.hp})
+})
+
+app.get('/tables', function(req, res) {
+
 })
 
 app.get('/stat', function(req, res) {
