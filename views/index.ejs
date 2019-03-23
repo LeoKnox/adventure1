@@ -9,6 +9,17 @@
             console.log(data.msg);
             socket.emit('thankyou', {msg: 'Thanks for connecting' });
         });
+
+        $("#bform").click(function(e){
+            e.preventDefault();
+            var z = Math.floor(Math.random()*1001);
+            socket.emit('new-form', {data: $("form").serializeArray(), 'lucky':z});
+        })
+
+        socket.on('form-data', function(data) {
+            document.getElementById("data").innerHTML = "Super data";
+            document.getElementById("data").innerHTML+= ":"+data.data[8].value+":";
+        });
     })
 </script>
 </head>
@@ -98,4 +109,13 @@
         <% } %>
         " style="fill:none;stroke:blue;stroke-width:3" />
     </svg>
+</div>
+<div>
+    <form action="">
+        Atk: <input type="text" name="attk" /><br>
+        <button id="bform">Begin</button>
+    </form>
+</div>
+<div id = "data">
+
 </div>

@@ -13,6 +13,10 @@ io.on('connection', function(socket) {
     socket.on('thank you', function(data) {
         console.log(data.msg)
     })
+    socket.on('new-form', function(data) {
+        console.log(data)
+        socket.emit('form-data', data)
+    })
 })
 var path = require('path')
 mongoose.connect('mongodb://localhost/basic_mongoose')
@@ -78,6 +82,10 @@ app.get('/attack', function(req, res) {
     console.log('I wIn');
     res.redirect('/stat');
 })
+
+//app.get('/data', function(req, res) {
+
+//})
 
 app.listen(8000, function() {
     console.log('listening on port 8000')
