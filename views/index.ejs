@@ -23,15 +23,21 @@
             document.getElementById("data").innerHTML+= ":"+data.data[8].value+":";
         });
 
-        var adv = React.createElement("h1", null, "Adventure Forth");
-        ReactDOM.render(adv, document.getElementById('reaction'));
-        React.createElement(
-            "ul",
-            null,
-            React.createElement("li", null, "Eveehi"),
-            React.createElement("li", null, "Aelien"),
-            React.createElement("li", null, "Colette")
-        )
+        var adv =
+            React.createElement('adv', {},
+                React.createElement('h1', {}, 'Adventure Forth'),
+                React.createElement('ul', {},
+                    [
+                        React.createElement('li', { className: 'id1' }, 'Eveehi'),
+                        React.createElement('li', { className: 'id2' }, 'Aelien'),
+                        React.createElement('li', { className: 'id3' }, 'Xingu')
+                    ]
+                )
+            );
+        ReactDOM.render(
+            adv,
+            document.getElementById('reaction')
+        );
     })
   </script>
 </head>
